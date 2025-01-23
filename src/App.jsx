@@ -1,30 +1,14 @@
 import "./App.css";
-import { useEffect, useState } from "react";
 
-import { DotCmsClient } from "@dotcms/client";
 import { DotcmsLayout } from "@dotcms/react";
 
+import useDotCms from "./hooks/UseDotCms";
 import Header from "./layout/header";
 import Footer from "./layout/Footer";
-
 import Banner from "./content-type-components/Banner";
 
-
-const client = DotCmsClient.init({
-  dotcmsUrl: `${import.meta.env.VITE_DOTCMS_HOST_KEY}`,
-  authToken: `${import.meta.env.VITE_DOTCMS_AUTH_TOKEN_KEY}`,
-  siteId: `${import.meta.env.VITE_DOTCMS_SITE_ID_KEY}`,
-});
-
 function App() {
-  const [pageAsset, setPageAsset] = useState(null);
-
-  useEffect(() => {
-    client.page
-      .get({ path: "/example", language_id: 1 })
-      .then((pageAsset) => setPageAsset(pageAsset))
-      .catch((error) => console.log(error));
-  }, []);
+  const { pageAsset } = useDotCms({ path: "/example", language_id: 1 });
 
   if (!pageAsset) {
     return <div>Loading...</div>;
