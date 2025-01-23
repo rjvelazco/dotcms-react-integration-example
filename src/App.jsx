@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { DotCmsClient } from "@dotcms/client";
 import { DotcmsLayout } from "@dotcms/react";
 
+import Header from "./layout/header";
+import Footer from "./layout/Footer";
+
 import Banner from "./content-type-components/Banner";
+
 
 const client = DotCmsClient.init({
   dotcmsUrl: `${import.meta.env.VITE_DOTCMS_HOST_KEY}`,
@@ -28,6 +32,7 @@ function App() {
 
   return (
     <div className="flex flex-col gap-6 min-h-screen bg-slate-200">
+      {pageAsset?.layout.header && <Header />}
       <main className="container m-auto">
         <DotcmsLayout
           pageContext={{
@@ -37,8 +42,9 @@ function App() {
             },
           }}
           config={{ pathname: "/example" }}
-        />
+          />
       </main>
+      {pageAsset?.layout.footer && <Footer />}
     </div>
   );
 }
