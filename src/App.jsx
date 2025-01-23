@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { DotCmsClient } from "@dotcms/client";
 import { DotcmsLayout } from "@dotcms/react";
 
+import Banner from "./content-type-components/Banner";
+
 const client = DotCmsClient.init({
   dotcmsUrl: `${import.meta.env.VITE_DOTCMS_HOST_KEY}`,
   authToken: `${import.meta.env.VITE_DOTCMS_AUTH_TOKEN_KEY}`,
@@ -30,7 +32,9 @@ function App() {
         <DotcmsLayout
           pageContext={{
             pageAsset,
-            components: {},
+            components: {
+              Banner: Banner
+            },
           }}
           config={{ pathname: "/example" }}
         />
