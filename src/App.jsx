@@ -6,6 +6,7 @@ import useDotCms from "./hooks/UseDotCms";
 import Header from "./layout/header";
 import Footer from "./layout/Footer";
 import Banner from "./content-type-components/Banner";
+import { isInsideEditor } from "@dotcms/client";
 
 function App() {
   const { pageAsset } = useDotCms({ path: "/example", language_id: 1 });
@@ -24,6 +25,7 @@ function App() {
             components: {
               Banner: Banner
             },
+            isInsideEditor: isInsideEditor()
           }}
           config={{ pathname: "/example" }}
           />
