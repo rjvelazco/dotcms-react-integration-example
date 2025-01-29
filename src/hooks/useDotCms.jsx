@@ -7,7 +7,7 @@ const client = DotCmsClient.init({
   siteId: `${import.meta.env.VITE_DOTCMS_SITE_ID_KEY}`,
 });
 
-const useDotCms = (pageParameter) => {
+const useDotCMS = (pageParameter) => {
   const [pageAsset, setPageAsset] = useState(null);
 
   useEffect(() => {
@@ -18,14 +18,13 @@ const useDotCms = (pageParameter) => {
   }, [pageParameter]);
 
   useEffect(() => {
-
     // If we are not inside dotCMS, we won't listen to the edito
     if (!isInsideEditor()) {
       return;
     }
 
     // The editor will return the PageAsset everytime we do a change inside dotCMS
-    client.editor.on('changes', (page) => setPageAsset(page));
+    client.editor.on("changes", (page) => setPageAsset(page));
 
     return;
   }, []);
@@ -33,4 +32,4 @@ const useDotCms = (pageParameter) => {
   return { pageAsset };
 };
 
-export default useDotCms;
+export default useDotCMS;

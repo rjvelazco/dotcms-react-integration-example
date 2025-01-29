@@ -1,15 +1,15 @@
 import "./App.css";
 
+import { isInsideEditor } from "@dotcms/client";
 import { DotcmsLayout } from "@dotcms/react";
 
-import useDotCms from "./hooks/UseDotCms";
-import Header from "./layout/header";
+import useDotCMS from "./hooks/useDotCms";
+import Header from "./layout/Header";
 import Footer from "./layout/Footer";
-import Banner from "./content-type-components/Banner";
-import { isInsideEditor } from "@dotcms/client";
+import Banner from "./content-type/Banner";
 
 function App() {
-  const { pageAsset } = useDotCms({ path: "/example", language_id: 1 });
+  const { pageAsset } = useDotCMS({ path: "/example", language_id: 1 });
 
   if (!pageAsset) {
     return <div>Loading...</div>;
@@ -23,12 +23,12 @@ function App() {
           pageContext={{
             pageAsset,
             components: {
-              Banner: Banner
+              Banner: Banner,
             },
-            isInsideEditor: isInsideEditor()
+            isInsideEditor: isInsideEditor(),
           }}
           config={{ pathname: "/example" }}
-          />
+        />
       </main>
       {pageAsset?.layout.footer && <Footer />}
     </div>
